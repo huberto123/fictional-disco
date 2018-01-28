@@ -1,0 +1,64 @@
+
+guess = {}
+
+while True:
+    choice = input("""
+      Co chcesz zrobić?
+      1.Dodaj pare
+      2.Usuń pare
+      3.Modyfikuj pary
+      4.Zamień pary
+      5.Wyjdź   
+    """)
+
+    if choice == "1":
+        while True:
+            exit = input("Jeśli chcesz wyjść podaj 0")
+            if exit == "0":
+                break
+            son = (input("Podaj imię syna: ")).title()
+            if son not in guess:
+                father = (input("Podaj imię jego ojca: ")).title()
+                guess[son] = father
+                print("Tak wygląda twój spis: ", guess.items())
+            else:
+                print("Nie może być dwóch takich samych synów")
+    elif choice == "2":
+        while True:
+            exit = input("Jeśli chcesz wyjść podaj 0")
+            if exit == "0":
+                break
+            son = (input("Podaj imię syna którego chcesz usunąć: ")).title()
+            if son in guess:
+                del guess[son]
+                print("Tak wygląda Twój spis: ", guess.items())
+            else:
+                print("Nie ma takiego syna")
+    elif choice == "3":
+        while True:
+            exit = input("Jeśli chcesz wyjść podaj 0")
+            if exit == "0":
+                break
+            son = (input("Podaj imię syna którego chcesz przypisać do innego ojca: ")).title()
+            if son in guess:
+                father = (input("Jakiego ojca mu teraz przypiszesz: ")).title()
+                guess[son] = father
+                print("Tak wygląda twój spis: ", guess.items())
+            else:
+                print("Nie ma takiego syna, spróbuj ponownie")
+    elif choice == "4":
+        while True:
+            if exit == "0":
+                break
+            son1 = (input("Zamiena ojców, podaj pierwszego syna: ")).title()
+            son2 = (input("drugiego syna: ")).title()
+            if son1 in guess and son2 in guess:
+                temporary = get.guess(son2, "")
+                guess[son2] = get.guess(son1, "")
+                guess[son1] = temporary
+                print("Tak wygląda twój spis: ", guess.items())
+
+    elif choice == "5":
+        break
+    else:
+        print("Nie ma takiej opcji w menu, spróbuj ponownie")
